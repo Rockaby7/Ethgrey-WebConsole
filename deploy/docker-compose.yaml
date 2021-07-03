@@ -9,4 +9,4 @@ services:
     volumes:
       - ./app:/app
     ports:
-      - "9090:9090"
+      - "8097:8097"

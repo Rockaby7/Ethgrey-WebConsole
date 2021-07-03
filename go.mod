@@ -3,6 +3,7 @@ module github.com/Pow-Duck/ethgrey
 go 1.16
 
 require (
+	github.com/Pow-Duck/httplib v0.0.1 // indirect
 	github.com/dgraph-io/badger/v3 v3.2103.0
 	github.com/gin-gonic/gin v1.7.2
 	github.com/go-playground/validator/v10 v10.6.1 // indirect

@@ -2,6 +2,7 @@ package core
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -55,6 +56,8 @@ loop:
 			c.parse(r)
 		}
 	}
+
+	fmt.Println("Over")
 }
 
 func (c *core) parse(t string) {

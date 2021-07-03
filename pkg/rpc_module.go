@@ -1,5 +1,11 @@
 package pkg
 
+type Request struct {
+	Msg       string      `json:"msg"`
+	ErrorCode int         `json:"error_code"`
+	Data      interface{} `json:"data"`
+}
+
 type InfoRequest struct {
 }
 

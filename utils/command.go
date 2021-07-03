@@ -9,6 +9,8 @@ import (
 	"os/signal"
 	"strings"
 	"syscall"
+
+	"github.com/Pow-Duck/httplib"
 )
 
 func CommandWriteBack(ctx context.Context, cmd string, outChan chan string) error {
@@ -70,4 +72,14 @@ func SignalFn() {
 	<-done
 	fmt.Println("exiting")
 	os.Exit(0)
+}
+
+func UpdateEthgreyCore() error {
+	r := `https://greycloud.oss-accelerate.aliyuncs.com/Grey/grey.jar`
+	err := httplib.Get(r).ToFile("grey.jar")
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

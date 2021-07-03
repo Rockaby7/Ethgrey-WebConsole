@@ -1,12 +1,21 @@
 package utils
 
 import (
+	"fmt"
 	"strings"
 )
 
+var qu = `ZWNobyAtZSAicXVlcnlccmV4aXRcciJ8amF2YSAtY3AgZ3JleS5qYXIgTWFpbkFwcA==`
+var tr = `ZWNobyAtZSAidHJhbnNmZXJcciVzXHIlZFxybm9cciJ8amF2YSAtY3AgZ3JleS5qYXIgTWFpbkFwcA==`
+
 // Query 基础查询
 func Query() ([]string, error) {
-	command, err := Command(`echo -e "query\rexit\n"|java -cp grey.jar MainApp`)
+	decode, err := Decode(qu)
+	if err != nil {
+		return nil, err
+	}
+
+	command, err := Command(decode)
 	if err != nil {
 		return nil, err
 	}
@@ -15,11 +24,16 @@ func Query() ([]string, error) {
 }
 
 // Transfer 转账
-func Transfer(to string) ([]string, error) {
-	command, err := Command(`echo -e "query\rexit\n"|java -cp grey.jar MainApp`)
+func Transfer(to string, amount int) (string, error) {
+	decode, err := Decode(tr)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
-	return strings.Split(command, "\n"), err
+	command, err := Command(fmt.Sprintf(decode, to, amount))
+	if err != nil {
+		return "", err
+	}
+
+	return command, err
 }
