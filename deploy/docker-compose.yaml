@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  ethgrey:
+    tty: true
+    container_name: "ethgrey"
+    image: ethgrey_sp:laster
+    restart: always
+    volumes:
+      - ./app:/app
+    ports:
+      - "9090:9090"
